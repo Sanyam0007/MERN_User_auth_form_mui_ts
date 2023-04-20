@@ -1,0 +1,71 @@
+openapi: 3.0.0
+info:
+  title: Login and SignUp APIs
+  version: 1.0.0
+  description: An API to manage user accounts
+servers:
+  - url: http://localhost:4000
+paths:
+  /user:
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: OK
+
+  /signup:
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+                phone:
+                  type: number
+              required:
+                - name
+                - email
+                - password
+      responses:
+        '201':
+          description: Created      
+    
+  /login:
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+              required:
+                - email
+                - password
+      responses:
+        '201':
+          description: Logged in      
+
+  /logout:
+    delete:
+      summary: Delete a user
+      responses:
+        '204':
+          description: Deleted
